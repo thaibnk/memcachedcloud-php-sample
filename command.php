@@ -1,8 +1,11 @@
 <?php
-$mc = new Memcached();
+echo "สวัสดี";
+$mc = new Memcached('mc');
 $mc->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
 $mc->addServers(array_map(function($server) { return explode(':', $server, 2); }, explode(',', $_ENV['MEMCACHEDCLOUD_SERVERS'])));
 $mc->setSaslAuthData($_ENV['MEMCACHEDCLOUD_USERNAME'], $_ENV['MEMCACHEDCLOUD_PASSWORD']);
+
+echo $mc;
 
 switch ($_GET['a']) {
   case 'set':
